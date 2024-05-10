@@ -11,9 +11,11 @@
     "license": "ISC",
     "dependencies": {
         "body-parser": "^1.19.2",
+        "chatgpt": "^5.2.5",
         "express": "^4.17.3",
         "express-jwt": "^6.1.1",
         "jsonwebtoken": "^8.5.1",
+        "mime": "^3.0.0",
         "mongoose": "^6.2.9"
     },
     "devDependencies": {

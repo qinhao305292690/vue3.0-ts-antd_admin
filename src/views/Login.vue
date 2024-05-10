@@ -34,7 +34,7 @@ let labelCol = { span: 4 }
 let wrapperCol = { span: 14 }
 let modelRef = reactive<IUser>({
     accountName: 'admin',
-    password: '123'
+    password: '123',
 })
 const rulesRef = reactive({
     accountName: [{ required: true, trigger: 'blur', message: '请输入用户名' }],
@@ -46,11 +46,11 @@ let store = useStore()
 let $router = useRouter()
 const { proxy } = getCurrentInstance() as any
 
-const onSubmit = () => {
+const onSubmit = (): void => {
     validate()
         .then(() => {
             loading.value = true
-            login(toRaw(modelRef))
+            login<IUser>(toRaw(modelRef))
                 .then(({ data, message, code }) => {
                     if (code === 0) {
                         proxy.$message.success(message)

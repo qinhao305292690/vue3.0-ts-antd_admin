@@ -16,7 +16,6 @@ const LayouteMenu = defineComponent({
       return rt
     }
     const currentOpenPath = findParentRoutePath(route.matched[0].children)
-    console.log(currentOpenPath, 'currentOpenPath');
     const menuConfig = reactive({
       selectedKeys: [route.path],
       openKeys: [currentOpenPath]
@@ -46,7 +45,6 @@ const LayouteMenu = defineComponent({
   },
   render() {
     const { route, renderMenuItem } = this
-    console.log(this.openKeys, 'this.openKeys');
     return (
       <>
         <a-menu v-model:openKeys={this.openKeys} v-model:selectedKeys={this.selectedKeys} mode='inline' theme="dark">

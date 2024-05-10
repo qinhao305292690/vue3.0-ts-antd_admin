@@ -23,7 +23,7 @@ instance.interceptors.response.use(
     response => {
         //拦截响应，做统一处理
         if (response.status === 200) {
-            return {
+            return response.config.responseType === 'blob' ? response.data : {
                 ...response.data
             }
         } else if (response.status === 401) {

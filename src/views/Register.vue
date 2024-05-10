@@ -33,6 +33,13 @@ import { Form } from 'ant-design-vue';
 import { registerUser } from '@/api/login';
 import { Modal, message } from 'ant-design-vue';
 import { useRouter } from 'vue-router'
+type User = {
+    accountName: string
+    password: string,
+    userName: string,
+    age: number,
+    gender: 1 | 0 | '1' | '0'
+}
 export default defineComponent({
     setup() {
         const layout = {
@@ -41,24 +48,26 @@ export default defineComponent({
         };
         let $router = useRouter()
 
-        const formState = reactive({
+        const formState = reactive<User>({
             accountName: '',
             password: '',
             userName: '',
             age: 18,
             gender: 1
         });
-        const loading = ref(false)
+        const loading = ref<Boolean>(false)
         const rulesRef = reactive({
             accountName: [{ max: 20, min: 3, required: true, type: 'string', message: '请输入用户名' }],
             password: [{ max: 20, min: 3, required: true, message: '请输入密码' }],
             userName: [{ max: 10, min: 2, required: true, message: '请输入姓名' }],
         });
         const useForm = Form.useForm;
+        // eslint-disable-next-line no-unused-vars
         const { resetFields, validate, validateInfos } = useForm(formState, rulesRef);
         const submit = () => {
             loading.value = true
-            validate().then(res => {
+            // eslint-disable-next-line no-unused-vars
+            validate().then((res:any) => {
                 registerUser(toRaw(formState)).then(({ code, message: msg }) => {
                     if (code === 0) {
                         Modal.confirm({

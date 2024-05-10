@@ -6,8 +6,8 @@ module.exports = function () {
     if (!isNaN(Number(_arg))) returnObj.code = _arg
     if (typeof _arg === 'string') returnObj.message = _arg
   })
-  console.log(args, 'args');
-  console.log(returnObj, 'returnObj');
+  // console.log(args, 'args');
+  // console.log(returnObj, 'returnObj');
   if (!returnObj.hasOwnProperty('code')) returnObj.code = 0
   return returnObj
 }

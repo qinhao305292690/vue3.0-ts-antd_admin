@@ -8,7 +8,7 @@ NProgress.configure({
     showSpinner: false
 });
 // 不需要token验证的白名单
-const whiteListRoute = <string[]>[
+const whiteListRoute: string[] = [
     '/register'
 ]
 router.beforeEach((to, from, next) => {

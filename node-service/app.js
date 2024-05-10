@@ -4,6 +4,11 @@ const app = express()
 const expressJwt = require('express-jwt')
 const bodyParser = require('body-parser')
 const tokenConfig = require('./config/tokenCofig')
+app.use((req,res, next) => { // 全局拦截器
+  // res.header("Content-Type", "application/json;charset=utf-8");
+  next()
+})
+
 // 链接数据库
 require('./model/connect')
 app.use(bodyParser.urlencoded({extended: false}))

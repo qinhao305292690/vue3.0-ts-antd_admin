@@ -24,7 +24,6 @@ const loginRoute = {
 const getUserInfoRoute = {
   api: '/getUserInfo',
   callback(req, res) {
-    console.log(req.body,'req.body');
     res.json(fetchStatus({
       userId: '2134',
       userName: '秦昊joyc',
@@ -37,7 +36,6 @@ const getUserInfoRoute = {
 const registerUser = {
   api: '/registerUser',
   callback(req, res) {
-    console.log(req.body);
     const {accountName} = req.body
     User.findOne({
       accountName

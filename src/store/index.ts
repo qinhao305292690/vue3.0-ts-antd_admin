@@ -1,19 +1,22 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 import userInfo from '@/store/module/userInfo'
-import { storeActionMethod } from './enumStoreType';
-import { getuserInfo } from '@/api/login';
+import {storeActionMethod} from './enumStoreType';
+import {getuserInfo} from '@/api/login';
+
 interface IUserinfoData {
-    readonly age: string | number
-    readonly avatar?: string
-    readonly gender: "1" | "0"
-    readonly userId: string
-    readonly userName: string
+    age: string | number
+    avatar?: string
+    gender: "1" | "0"
+    userId: string
+    userName: string
 }
+
 interface IState {
-    userInfoData: IUserinfoData,
+    userInfoData: Readonly<IUserinfoData>,
     token?: string
 }
-const userInfoData: IUserinfoData = {
+
+const userInfoData: Readonly<IUserinfoData> = {
     age: '',
     gender: '0',
     userId: '',
@@ -26,8 +29,8 @@ const state: IState = {
 const store = createStore({
     state,
     getters: {
-        getToken: ({ token }) => token,
-        userInfo: ({ userInfoData }) => userInfoData
+        getToken: ({token}) => token,
+        userInfo: ({userInfoData}) => userInfoData
     },
     mutations: {
         [storeActionMethod.SETTOKEN](state, token: string = '') {
@@ -39,8 +42,8 @@ const store = createStore({
         }
     },
     actions: {
-        [storeActionMethod.GETUSERINFO]({ commit }, next) {
-            getuserInfo().then(({ data }) => {
+        [storeActionMethod.GETUSERINFO]({commit}, next) {
+            getuserInfo().then(({data}) => {
                 commit(storeActionMethod.SETUSERINFODATA, data)
                 next()
             })
